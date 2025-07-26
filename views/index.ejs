@@ -1,0 +1,44 @@
+<%- include("partials/header.ejs") %>
+
+<html>
+<body class="container background">
+
+    <h1 class="title">Ango Gablogian's</h1>
+    <h2 class="title">Recent Reads...</h2>
+
+    <% if (error) { %>
+        <div class="alert alert-warning text-center"><%= error %></div>
+      <% } %>
+
+<!--Book info cards-->
+    <% books.forEach((book) => { %>
+        <div class="card mb-3" style="max-width: 100%;">
+            <div class="row g-0">
+                <!--container for cover images within cards-->
+                <div class="col-md-2">
+                    <img src="<%= book.coverImage %>" class="img-fluid rounded-start" alt="<%= book.title %> cover image">
+                </div>
+                <div class="col-md-8">
+                    <form class="edit" action="/edit" method="get">
+                        <div class="card-body">
+                            <h5 class="card-title" name="updatedBookId" value="<%= book.id %>"><%= book.title %></h5>
+                            <p class="card-text">Author: <%= book.author %></p>
+                            <p class="card-text">Date: <%= new Date(book.date).toISOString().split('T')[0] %></p>
+                            <p class="card-text">Notes: <%= book.notes %></p>
+                            <p class="card-text">ISBN: <%= book.isbn %></p>
+                            <p class="card-text">Rating: <%= book.rating %> /10</p>
+                            <input type="hidden" name="id" value="<%= book.id %>">
+                            <button type="submit" class="btn btn-primary">Edit</button>
+                            <button type="submit" class="btn btn-danger" formaction="/delete?id=<%= book.id %>">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+
+<%- include("partials/footer.ejs") %>
+</html>
