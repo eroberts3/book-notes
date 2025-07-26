@@ -109,10 +109,6 @@ app.post('/edit', async (req, res) => {
   
 app.get('/add', async (req, res) => {
     try {
-        const response = await axios.get('https://openlibrary.org/subjects/fiction.json?limit=10');
-        const books = response.data.works.map((work) => ({
-            title: work.title,}
-        ));
         res.render('add.ejs',
             { sortOption: '', // Passing an empty sort option for the add page to avoid reference error.
             error: null,
