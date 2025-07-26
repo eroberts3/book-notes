@@ -23,7 +23,7 @@
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/your-username/book-notes.git
+   git clone https://github.com/eroberts3/book-notes.git
    cd book-notes
 Install dependencies:
 
